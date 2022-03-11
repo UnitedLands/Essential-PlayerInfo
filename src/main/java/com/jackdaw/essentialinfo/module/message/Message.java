@@ -58,6 +58,8 @@ public class Message {
     private void broadcast(Player player, String message) {
         String playerName = player.getUsername();
         Component groupName = Utils.getGroupDisplayName(player);
+        Component prefix = Utils.getPlayerPrefix(player);
+
         @NotNull TextComponent sendMessage;
         TextComponent textComponent = null;
         // Audience message
@@ -68,7 +70,9 @@ public class Message {
                         .append(server)
                         .append(Component.text("] ", NamedTextColor.DARK_GRAY))
                         .append(groupName)
-                        .append(Component.text(" " + playerName + ": ", NamedTextColor.GRAY))
+                        .append(Component.text(" "))
+                        .append(prefix)
+                        .append(Component.text(playerName + ": ", NamedTextColor.GRAY))
                         .append(Component.text(message, NamedTextColor.WHITE));
 
              textComponent = sendMessage;
