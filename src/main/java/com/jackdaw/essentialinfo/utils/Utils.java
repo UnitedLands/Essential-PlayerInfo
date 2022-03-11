@@ -28,9 +28,13 @@ public class Utils {
             return null;
         }
 
-        Component deserializedSection = LegacyComponentSerializer.legacySection().deserialize(prefix);
-        @NotNull String reserialized = LegacyComponentSerializer.legacyAmpersand().serialize(deserializedSection);
+        String rawPrefix = prefix
+                .replace("&8[", "") // Remove any open brackets [
+                .replace("&8]", "") // Remove any close brackets ]
+                .replace("&r", "") // Remove any reset colors
+                .replace(" ", ""); // Remove any extra whitespace
 
-        return LegacyComponentSerializer.legacyAmpersand().deserialize(reserialized);
+        return LegacyComponentSerializer.legacySection().deserialize(rawPrefix);
     }
+
 }

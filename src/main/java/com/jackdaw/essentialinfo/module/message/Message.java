@@ -13,6 +13,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -49,7 +50,7 @@ public class Message {
                 broadcast(player, parsedMessage.get("content").toString());
             }
         } else {
-            broadcast(player, message);
+             broadcast(player, message);
         }
 
     }
@@ -70,8 +71,9 @@ public class Message {
                         .append(server)
                         .append(Component.text("] ", NamedTextColor.DARK_GRAY))
                         .append(groupName)
-                        .append(Component.text(" "))
+                        .append(Component.text(" [", NamedTextColor.DARK_GRAY))
                         .append(prefix)
+                        .append(Component.text("] ", NamedTextColor.DARK_GRAY))
                         .append(Component.text(playerName + ": ", NamedTextColor.GRAY))
                         .append(Component.text(message, NamedTextColor.WHITE));
 
