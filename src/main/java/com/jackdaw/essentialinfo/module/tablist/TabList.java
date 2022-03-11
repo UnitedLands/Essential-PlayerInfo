@@ -1,6 +1,7 @@
 package com.jackdaw.essentialinfo.module.tablist;
 
 import com.jackdaw.essentialinfo.EssentialInfo;
+import com.jackdaw.essentialinfo.utils.Utils;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
@@ -11,6 +12,8 @@ import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 public class TabList {
@@ -83,12 +86,13 @@ public class TabList {
 
     // add TabList entry
     private void addTabListEntry(@NotNull Player toPlayer, @NotNull Player fromPlayer, String serverName) {
+        Component groupName = Utils.getGroupDisplayName(fromPlayer);
         if (!toPlayer.getUniqueId().equals(fromPlayer.getUniqueId()) && !toPlayer.getTabList().containsEntry(fromPlayer.getUniqueId())) {
             toPlayer.getTabList().addEntry(TabListEntry.builder()
-                    .displayName(Component.text("[" + serverName + "] " + fromPlayer.getUsername()))
+                    .displayName(groupName
+                            .append(Component.text(" " + fromPlayer.getUsername())))
                     .latency((int) fromPlayer.getPing())
                     .profile(fromPlayer.getGameProfile())
-                    .gameMode(3)
                     .tabList(toPlayer.getTabList())
                     .build());
         }

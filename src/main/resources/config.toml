@@ -5,7 +5,7 @@
 
 # Global tablist
 [tabList]
-    enabled=true
+    enabled=false
 
 # Global massage
 [message]
@@ -18,7 +18,7 @@
 
 # Connection Tips
 [connectionTips]
-    enabled=true
+    enabled=false
 
 # Custom Message Setting
 [customText]
